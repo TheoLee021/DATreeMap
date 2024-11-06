@@ -1,4 +1,4 @@
-### **Architecture for the Tree Map Project Web Application**
+## **Architecture for the Tree Map Project Web Application**
 
 ## 1. Overview
 The Tree Map Project will use a **client-server architecture** where the **frontend** and **backend** communicate separately. The frontend handles user requests, while the backend provides or stores necessary data by connecting to the database.

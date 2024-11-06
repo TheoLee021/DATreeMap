@@ -1,4 +1,4 @@
-### **Web Application Development Plan for the Tree Map Project**
+## **Web Application Development Plan for the Tree Map Project**
 
 This plan focuses on building a web application that facilitates data collection and visualization to help users easily access and understand the ecological value of trees, aligning with the Tree Map project’s objectives.
 
