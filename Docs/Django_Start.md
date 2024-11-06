@@ -1,5 +1,5 @@
 ### 1. **Set Up a Python Virtual Environment**
-- First, make sure Python is installed on each laptop.
+- First, make sure Python is installed on your laptop.
 - To keep project dependencies isolated, it’s recommended to set up a virtual environment.
 - To create a virtual environment, open a terminal and run:
 ```bash
