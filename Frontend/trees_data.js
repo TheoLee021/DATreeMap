@@ -3,4 +3,3 @@ const trees = [
     { species: 'Maple', height: 10, latitude: 37.7849, longitude: -122.4094 },
     { species: 'Pine', height: 20, latitude: 37.7649, longitude: -122.4294 }
   ];
-  

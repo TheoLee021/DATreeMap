@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Tree Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="screen-header">
+    <div class="screen-header__title">
+      <a href="login.html">
+        <div>Login</div>
+      </a>
+    </div>
+    <div class="screen-header__title">
+      <a href="home.html">
+          <h1 class="screen-header__logo">Logo</h1>
+      </a>
+    </div>
+    <div class="screen-header__menu">
+        <i class="fa-solid fa-bars fa-xl"></i>
+    </div>
+  </header>
+
+  <main class="main-screen">
+    <div id="map"></div>
+  </main>
+
+  <script src="https://kit.fontawesome.com/b3f4de9307.js" 
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="trees_data.js"></script>  <!-- Sample tree data -->
+  <script src="script.js"></script>
+</body>
+</html>
