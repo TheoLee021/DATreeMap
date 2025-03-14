@@ -1,0 +1,389 @@
+/* filter panel */
+@import '/static/css/map.css';
+
+/* =========== Base Styles =========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========== Header Styles =========== */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #e0e0e0;
+}
+
+/* =========== Main Content =========== */
+main {
+    flex: 1;
+    padding: 0;
+}
+
+#map {
+    width: 100%;
+    height: calc(100vh - 130px);
+}
+
+/* =========== Footer Styles =========== */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.organization {
+    font-weight: bold;
+}
+
+.links a {
+    color: #ddd;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+/* =========== Map Elements =========== */
+/* Tree Marker Styles */
+.tree-marker {
+    background: transparent;
+    border: none;
+}
+
+.tree-dot {
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+}
+
+.leaflet-marker-icon:hover .tree-dot {
+    transform: scale(1.2);
+    background-color: #2E7D32;
+}
+
+/* =========== Cluster Styles =========== */
+/* Base Cluster Styles */
+.custom-cluster {
+    background-color: transparent !important;
+}
+
+.custom-cluster div {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important;
+}
+
+/* Cluster Text Styles */
+.custom-cluster .cluster-count {
+    color: white;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.custom-cluster .area-name {
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    max-width: 100%;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Cluster Size Classes */
+.custom-cluster-small .cluster-count {
+    font-size: 16px;
+}
+
+.custom-cluster-medium .cluster-count {
+    font-size: 24px;
+}
+
+.custom-cluster-large .cluster-count {
+    font-size: 30px;
+}
+
+.custom-cluster-small .area-name {
+    font-size: 10px;
+}
+
+.custom-cluster-medium .area-name {
+    font-size: 15px;
+}
+
+.custom-cluster-large .area-name {
+    font-size: 20px;
+}
+
+/* Cluster Size Scaling */
+.custom-cluster-small {
+    transform: scale(1.1);
+}
+
+.custom-cluster-medium {
+    transform: scale(1.2);
+}
+
+.custom-cluster-large {
+    transform: scale(1.3);
+}
+
+/* Cluster Color Classes */
+.custom-cluster-west {
+    background-color: transparent !important;
+}
+
+.custom-cluster-east {
+    background-color: transparent !important;
+}
+
+.custom-cluster-south {
+    background-color: transparent !important;
+}
+
+.custom-cluster-combined {
+    background-color: transparent !important;
+}
+
+.custom-cluster-default {
+    background-color: transparent !important;
+}
+
+/* =========== Leaflet Overrides =========== */
+/* Cluster Animation & Effects */
+.leaflet-marker-icon-wrapper {
+    opacity: 0.8 !important;
+}
+
+.leaflet-cluster-anim .leaflet-marker-icon,
+.leaflet-cluster-anim .leaflet-marker-shadow {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+/* Polygon Styles */
+.custom-cluster-polygon {
+    stroke: #4CAF50;
+    stroke-width: 3;
+    stroke-opacity: 0.5;
+    fill: #8BC34A;
+    fill-opacity: 0.2;
+    transition: fill-opacity 0.2s ease;
+}
+
+.custom-cluster:hover ~ .custom-cluster-polygon {
+    fill-opacity: 0.4;
+    stroke-opacity: 0.8;
+}
+
+.area-boundary {
+    pointer-events: none;
+    z-index: 400;
+}
+
+/* =========== Legend Styles =========== */
+.legend-areas {
+    margin-top: 8px;
+}
+
+.legend-areas div {
+    margin: 3px 0;
+    display: flex;
+    align-items: center;
+}
+
+.legend-areas span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+/* =========== Responsive Styles =========== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .links {
+        margin-top: 1rem;
+    }
+    
+    .links a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+    
+    .custom-cluster .area-name {
+        font-size: 8px;
+    }
+}
+
+/* =========== Tree Modal Styles =========== */
+.tree-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tree-modal.active {
+    opacity: 1;
+}
+
+.tree-modal-content {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.tree-modal.active .tree-modal-content {
+    transform: translateY(0);
+}
+
+.tree-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.tree-modal-close:hover {
+    background-color: #f0f0f0;
+}
+
+.tree-details h2 {
+    margin-top: 0;
+    color: #2E7D32;
+    margin-bottom: 10px;
+}
+
+.tree-details .botanical-name {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.tree-attributes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.tree-attributes th {
+    text-align: left;
+    padding: 8px;
+    font-weight: bold;
+    width: 40%;
+    border-bottom: 1px solid #eee;
+}
+
+.tree-attributes td {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.tree-notes {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.tree-notes h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}

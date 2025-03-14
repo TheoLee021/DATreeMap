@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">De Anza Tree Map Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+<a href="/api/rest/" style="margin-left: 15px; color: white;">API Browser</a>
+{% endblock %} 

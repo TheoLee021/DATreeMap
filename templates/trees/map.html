@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive map of trees on De Anza College campus">
+    <meta name="keywords" content="De Anza College, trees, campus map, biodiversity">
+    <title>De Anza Campus Tree Map</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Leaflet library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <!-- MarkerCluster plugin -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Leaflet JS library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <!-- MarkerCluster plugin -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+</head>
+<body>
+    <!-- Header area -->
+    <header role="banner">
+        <div class="logo">De Anza Campus Tree Map</div>
+        <nav role="navigation" aria-label="Main Navigation">
+            <ul>
+                <li><a href="{% url 'trees:map' %}">Home</a></li>
+                <li><a href="/admin/">Admin</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content area -->
+    <main role="main">
+        <!-- Map container -->
+        <section id="map-container">
+            <div id="map" aria-label="Interactive campus tree map"></div>
+        </section>
+    </main>
+
+    <!-- Footer area -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="organization">Environmental Monitoring Society</div>
+            <div class="copyright">&copy; 2025 All Rights Reserved</div>
+            <div class="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Main map script -->
+    <script src="{% static 'js/map.js' %}"></script>
+</body>
+</html> 
