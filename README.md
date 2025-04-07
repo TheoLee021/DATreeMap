@@ -54,7 +54,7 @@ The project consists of the following main apps:
    cd [repository-folder]
    ```
 
-2. Create and configure the `.env` file:
+2. Create and configure the `.env` file (if needed):
    ```bash
    cp .env.example .env
    # Edit the .env file if needed
@@ -97,7 +97,7 @@ The project consists of the following main apps:
      - Intel/AMD64: use `/usr/lib/libgdal.so` 
    - Update `ALLOWED_HOSTS` to include your domain in production
 
-3. Update Poetry dependencies (if needed):
+3. Update Poetry dependencies:
    ```bash
    poetry lock
    ```
