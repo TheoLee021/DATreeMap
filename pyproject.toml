@@ -1,5 +1,5 @@
 [project]
-name = "datreemap"
+name = "datreemap-test"
 version = "0.1.0"
 description = ""
 authors = [
@@ -8,8 +8,12 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "django (>=5.1.7,<6.0.0)",
-    "pillow (>=11.1.0,<12.0.0)"
+    "django (>=5.1.6,<6.0.0)",
+    "pillow (>=11.1.0,<12.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "djangorestframework (>=3.12,<3.16)",
+    "djangorestframework-gis (>=1.1,<2.0)",
+    "gunicorn (>=21.2.0,<22.0.0)"
 ]
 
 
@@ -20,3 +24,9 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
 
+[tool.poetry]
+packages = [
+    {include = "trees"},
+    {include = "users"},
+    # 또는 다른 앱 디렉토리들...
+]
