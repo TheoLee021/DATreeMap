@@ -1,0 +1,38 @@
+0000000000000000000000000000000000000000 e497a83e2ce1e204b79d81db1d964e6c4fab35ec Theo Lee <theolee021@gmail.com> 1740552727 -0800	commit (initial): initial commit: Add project files
+e497a83e2ce1e204b79d81db1d964e6c4fab35ec df78cfa1a861768fcb16acbd37e87339fa0d7c65 Theo Lee <theolee021@gmail.com> 1740553223 -0800	commit: Create .gitignore
+df78cfa1a861768fcb16acbd37e87339fa0d7c65 10dc03405ee921c0f9c3a07cd67a6c23da7b7482 Theo Lee <theolee021@gmail.com> 1740560386 -0800	commit: Update
+10dc03405ee921c0f9c3a07cd67a6c23da7b7482 e5eaac36b045cd15ac1ef75d3f8cd414b2da63a4 Theo Lee <theolee021@gmail.com> 1740643174 -0800	commit: Update Marker Clustering
+e5eaac36b045cd15ac1ef75d3f8cd414b2da63a4 f36738fb142c9e659f4968b86270f68114dc6f08 Theo Lee <theolee021@gmail.com> 1740650225 -0800	commit: Update
+f36738fb142c9e659f4968b86270f68114dc6f08 baef0a80c6129b889d85693aee7c96a37c2ce0ef Theo Lee <theolee021@gmail.com> 1740686151 -0800	commit: Update Tree Details Feature
+baef0a80c6129b889d85693aee7c96a37c2ce0ef ee91026b2294e5b0e37e3eae0ac358cc406eacef Theo Lee <theolee021@gmail.com> 1740686460 -0800	commit: Update map.js
+ee91026b2294e5b0e37e3eae0ac358cc406eacef 06973d9b220589d61a7106d06c6d46c71a7ed71e Theo Lee <theolee021@gmail.com> 1740686729 -0800	commit: Edit North to East
+06973d9b220589d61a7106d06c6d46c71a7ed71e 9a19a6fbd8c4776ecfe45546873be32ffd1b110d Theo Lee <theolee021@gmail.com> 1740690268 -0800	commit: Add Filter
+9a19a6fbd8c4776ecfe45546873be32ffd1b110d 32e4d95c4b2d549826737ad2fe9ebdfc53c403d7 Theo Lee <theolee021@gmail.com> 1740698566 -0800	commit: Update Admin Panel
+32e4d95c4b2d549826737ad2fe9ebdfc53c403d7 099c5f280e74a80850dd3400cb3154b9a747e802 Theo Lee <theolee021@gmail.com> 1740698586 -0800	commit: Update Admin Panel
+099c5f280e74a80850dd3400cb3154b9a747e802 7f51e629a6b9c4fdcd498b7cacc752227a9d2397 Theo Lee <theolee021@gmail.com> 1740702099 -0800	commit: Update map.js
+7f51e629a6b9c4fdcd498b7cacc752227a9d2397 a07a1053eb71fe5e28b49a035a41058483f4cf54 Theo Lee <theolee021@gmail.com> 1740971347 -0800	commit: Update models.py
+a07a1053eb71fe5e28b49a035a41058483f4cf54 03880109fe3b94c5cc6baa35bd6fb3b7ea581da7 Theo Lee <theolee021@gmail.com> 1742578284 -0700	commit: Docker Containerization
+03880109fe3b94c5cc6baa35bd6fb3b7ea581da7 4e2e4268a456f680b564625a8d9c971329af998e Theo Lee <theolee021@gmail.com> 1742578333 -0700	commit: Nginx Setting for Production
+4e2e4268a456f680b564625a8d9c971329af998e 2eed7f8d8eb6a3cb932a5f78f6fafaf0743d5ff7 Theo Lee <theolee021@gmail.com> 1742578337 -0700	commit: Create README.md
+2eed7f8d8eb6a3cb932a5f78f6fafaf0743d5ff7 eac6d3a0254b58bd5f3fdeb9505970f4473141dd Theo Lee <theolee021@gmail.com> 1742578355 -0700	commit: Add Sctripts
+eac6d3a0254b58bd5f3fdeb9505970f4473141dd eac6d3a0254b58bd5f3fdeb9505970f4473141dd Theo Lee <theolee021@gmail.com> 1743487910 -0700	checkout: moving from main to Docker
+eac6d3a0254b58bd5f3fdeb9505970f4473141dd 2a74492ab9b89bf925bc9816878d193e37259f40 Theo Lee <theolee021@gmail.com> 1743487950 -0700	commit: Update Docker
+2a74492ab9b89bf925bc9816878d193e37259f40 9a0825ebc2948b85d48f730cdea8870a1e77769f Theo Lee <theolee021@gmail.com> 1743570120 -0700	commit: Create .env.example
+9a0825ebc2948b85d48f730cdea8870a1e77769f 38b41c2a7db07991df9e15868632ce657b50cf27 Theo Lee <theolee021@gmail.com> 1743570143 -0700	commit: Update Settings
+38b41c2a7db07991df9e15868632ce657b50cf27 7c8a203752b703cce4bde1363254fc468a3e62a5 Theo Lee <theolee021@gmail.com> 1743570154 -0700	commit: Create wait_for_db.py
+7c8a203752b703cce4bde1363254fc468a3e62a5 786d1538940db4db682184f384802d19b7b41cd2 Theo Lee <theolee021@gmail.com> 1743570164 -0700	commit: Update start.sh
+786d1538940db4db682184f384802d19b7b41cd2 0586df6114879d1418d24a405f7b07b55d567f91 Theo Lee <theolee021@gmail.com> 1743570169 -0700	commit: Update README.md
+0586df6114879d1418d24a405f7b07b55d567f91 e8e63e560dee19777e61ffa4989dd07ca3ad12d5 Theo Lee <theolee021@gmail.com> 1743570187 -0700	commit: Update pyproject.toml
+e8e63e560dee19777e61ffa4989dd07ca3ad12d5 665b601477f2a3bd66d6c788a7d35bc4e16f9c57 Theo Lee <theolee021@gmail.com> 1743570192 -0700	commit: Update poetry.lock
+665b601477f2a3bd66d6c788a7d35bc4e16f9c57 132c918a8c22456be8554774958b4b8197113b43 Theo Lee <theolee021@gmail.com> 1743570197 -0700	commit: Update Dockerfile
+132c918a8c22456be8554774958b4b8197113b43 6a7133435229582eaef86520af14e364f8cafca7 Theo Lee <theolee021@gmail.com> 1743570201 -0700	commit: Update Dockerfile
+6a7133435229582eaef86520af14e364f8cafca7 eac0cdb69fbbd35c9ebaadb6964fb2b1a9662752 Theo Lee <theolee021@gmail.com> 1743570203 -0700	commit: Update docker-compose.yml
+eac0cdb69fbbd35c9ebaadb6964fb2b1a9662752 0f4c0fd5606067468377dc1fba91a7255afe8ef3 Theo Lee <theolee021@gmail.com> 1743628824 -0700	commit: Create DOCKER_SETUP.md
+0f4c0fd5606067468377dc1fba91a7255afe8ef3 81fa58f70034e808612f93ae126efcd1da6e99d5 Theo Lee <theolee021@gmail.com> 1743628840 -0700	commit: Update README.md
+81fa58f70034e808612f93ae126efcd1da6e99d5 81fa58f70034e808612f93ae126efcd1da6e99d5 Theo Lee <theolee021@gmail.com> 1743630053 -0700	reset: moving to HEAD
+81fa58f70034e808612f93ae126efcd1da6e99d5 adce609b483423189979fcf77a64dc0fed73b994 Theo Lee <theolee021@gmail.com> 1743630053 -0700	checkout: moving from Docker to main
+adce609b483423189979fcf77a64dc0fed73b994 d038cd60237084d520c36def1717010a70163a11 Theo Lee <theolee021@gmail.com> 1743630081 -0700	commit: Update README.md
+d038cd60237084d520c36def1717010a70163a11 58c4069f43f6e140d5c9a038bff9aecbb70b5935 Theo Lee <theolee021@gmail.com> 1743630196 -0700	commit (merge): Merge branch 'main' of https://github.com/TheoLee021/DATreeMap-Test
+58c4069f43f6e140d5c9a038bff9aecbb70b5935 9c932ba7ff0b816d27c710b2cb9d577cbdb60a62 Theo Lee <theolee021@gmail.com> 1743630266 -0700	commit: Update README.md
+9c932ba7ff0b816d27c710b2cb9d577cbdb60a62 f3365139be1d40076a3c69109044df38b9e386bb Theo Lee <theolee021@gmail.com> 1743633657 -0700	commit: Update DOCKER_SETUP.md
+f3365139be1d40076a3c69109044df38b9e386bb 962001e11cceaa30b51158369a9894713bff41df Theo Lee <theolee021@gmail.com> 1743635050 -0700	commit: Update README.md

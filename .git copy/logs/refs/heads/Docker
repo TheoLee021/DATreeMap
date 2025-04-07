@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 eac6d3a0254b58bd5f3fdeb9505970f4473141dd Theo Lee <theolee021@gmail.com> 1743487904 -0700	branch: Created from main
+eac6d3a0254b58bd5f3fdeb9505970f4473141dd 2a74492ab9b89bf925bc9816878d193e37259f40 Theo Lee <theolee021@gmail.com> 1743487950 -0700	commit: Update Docker
+2a74492ab9b89bf925bc9816878d193e37259f40 9a0825ebc2948b85d48f730cdea8870a1e77769f Theo Lee <theolee021@gmail.com> 1743570120 -0700	commit: Create .env.example
+9a0825ebc2948b85d48f730cdea8870a1e77769f 38b41c2a7db07991df9e15868632ce657b50cf27 Theo Lee <theolee021@gmail.com> 1743570143 -0700	commit: Update Settings
+38b41c2a7db07991df9e15868632ce657b50cf27 7c8a203752b703cce4bde1363254fc468a3e62a5 Theo Lee <theolee021@gmail.com> 1743570154 -0700	commit: Create wait_for_db.py
+7c8a203752b703cce4bde1363254fc468a3e62a5 786d1538940db4db682184f384802d19b7b41cd2 Theo Lee <theolee021@gmail.com> 1743570164 -0700	commit: Update start.sh
+786d1538940db4db682184f384802d19b7b41cd2 0586df6114879d1418d24a405f7b07b55d567f91 Theo Lee <theolee021@gmail.com> 1743570169 -0700	commit: Update README.md
+0586df6114879d1418d24a405f7b07b55d567f91 e8e63e560dee19777e61ffa4989dd07ca3ad12d5 Theo Lee <theolee021@gmail.com> 1743570187 -0700	commit: Update pyproject.toml
+e8e63e560dee19777e61ffa4989dd07ca3ad12d5 665b601477f2a3bd66d6c788a7d35bc4e16f9c57 Theo Lee <theolee021@gmail.com> 1743570192 -0700	commit: Update poetry.lock
+665b601477f2a3bd66d6c788a7d35bc4e16f9c57 132c918a8c22456be8554774958b4b8197113b43 Theo Lee <theolee021@gmail.com> 1743570197 -0700	commit: Update Dockerfile
+132c918a8c22456be8554774958b4b8197113b43 6a7133435229582eaef86520af14e364f8cafca7 Theo Lee <theolee021@gmail.com> 1743570201 -0700	commit: Update Dockerfile
+6a7133435229582eaef86520af14e364f8cafca7 eac0cdb69fbbd35c9ebaadb6964fb2b1a9662752 Theo Lee <theolee021@gmail.com> 1743570203 -0700	commit: Update docker-compose.yml
+eac0cdb69fbbd35c9ebaadb6964fb2b1a9662752 0f4c0fd5606067468377dc1fba91a7255afe8ef3 Theo Lee <theolee021@gmail.com> 1743628824 -0700	commit: Create DOCKER_SETUP.md
+0f4c0fd5606067468377dc1fba91a7255afe8ef3 81fa58f70034e808612f93ae126efcd1da6e99d5 Theo Lee <theolee021@gmail.com> 1743628840 -0700	commit: Update README.md

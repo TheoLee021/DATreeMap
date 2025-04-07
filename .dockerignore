@@ -1,0 +1,11 @@
+.git
+.gitignore
+.env
+*.pyc
+__pycache__/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+media/
+staticfiles/ 
