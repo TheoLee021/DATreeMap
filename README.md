@@ -2,7 +2,7 @@
 
 A web application for visualizing and managing tree data on the De Anza campus. Built with Django and PostGIS, this application provides an interactive map interface to explore trees on campus.
 
-[![Korean](https://img.shields.io/badge/Korean-README-red)](README.ko.md)
+[![Korean](https://img.shields.io/badge/README-Korean-red)](README.ko.md)
 
 ## Table of Contents
 - [Features](#features)
