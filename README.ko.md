@@ -48,13 +48,18 @@ De Anza 캠퍼스의 나무 데이터를 시각화하고 관리하기 위한 웹
 
 ### Docker 사용 (권장)
 
-1. 저장소를 복제합니다:
+1. Docker와 Docker Compose 설치:
+   - Mac용: [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+   - Windows용: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+   - Linux용: [Docker Engine](https://docs.docker.com/engine/install/)과 [Docker Compose](https://docs.docker.com/compose/install/)
+
+2. 저장소를 복제합니다:
    ```bash
    git clone [저장소-URL]
    cd [저장소-폴더]
    ```
 
-2. `.env` 파일을 생성하고 설정합니다 (필요한 경우):
+3. `.env` 파일을 생성하고 설정합니다 (필요한 경우):
    ```bash
    cp .env.example .env
    # 필요한 경우 .env 파일을 편집합니다
@@ -97,17 +102,17 @@ De Anza 캠퍼스의 나무 데이터를 시각화하고 관리하기 위한 웹
      - Intel/AMD64: `/usr/lib/libgdal.so` 사용
    - 프로덕션에서는 도메인을 `ALLOWED_HOSTS`에 추가
 
-3. Poetry 의존성을 업데이트합니다:
+4. Poetry 의존성을 업데이트합니다:
    ```bash
    poetry lock
    ```
 
-4. Docker Compose로 서비스를 시작합니다:
+5. Docker Compose로 서비스를 시작합니다:
    ```bash
    docker-compose up --build
    ```
 
-5. 데이터베이스를 초기화합니다:
+6. 데이터베이스를 초기화합니다:
    ```bash
    # 새 터미널에서
    docker-compose exec web python manage.py migrate
@@ -115,7 +120,7 @@ De Anza 캠퍼스의 나무 데이터를 시각화하고 관리하기 위한 웹
    docker-compose exec web python manage.py createsuperuser
    ```
 
-6. 웹 브라우저에서 애플리케이션에 접근합니다:
+7. 웹 브라우저에서 애플리케이션에 접근합니다:
    ```
    http://localhost:8000
    ```
@@ -123,49 +128,6 @@ De Anza 캠퍼스의 나무 데이터를 시각화하고 관리하기 위한 웹
    관리자 인터페이스:
    ```
    http://localhost:8000/admin
-   ```
-
-### 로컬 개발 환경 설정
-
-1. 시스템 의존성을 설치합니다:
-   - Python 3.12
-   - PostGIS 확장이 포함된 PostgreSQL
-   - GDAL 및 GEOS 라이브러리
-
-2. Poetry를 사용하여 Python 의존성을 설치합니다:
-   ```bash
-   pip install poetry
-   poetry install
-   ```
-
-3. 데이터베이스 설정을 구성합니다:
-   ```bash
-   export DB_NAME=datreemap
-   export DB_USER=사용자명
-   export DB_PASSWORD=비밀번호
-   export DB_HOST=localhost
-   export DB_PORT=5432
-   ```
-
-4. GDAL/GEOS 라이브러리 경로를 설정합니다:
-   ```bash
-   # ARM64 아키텍처 macOS (M1/M2 Mac)용
-   export GDAL_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgdal.so
-   export GEOS_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgeos_c.so
-   
-   # Intel Mac 또는 Linux용
-   export GDAL_LIBRARY_PATH=/usr/lib/libgdal.so
-   export GEOS_LIBRARY_PATH=/usr/lib/libgeos_c.so
-   ```
-
-5. 데이터베이스 마이그레이션을 실행합니다:
-   ```bash
-   python manage.py migrate
-   ```
-
-6. 개발 서버를 시작합니다:
-   ```bash
-   python manage.py runserver
    ```
 
 ## 나무 데이터 가져오기

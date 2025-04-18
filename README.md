@@ -50,13 +50,18 @@ The project consists of the following main apps:
 
 ### Using Docker (Recommended)
 
-1. Clone the repository:
+1. Install Docker and Docker Compose:
+   - For Mac: [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
+   - For Windows: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+   - For Linux: [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
+
+2. Clone the repository:
    ```bash
    git clone [repository-url]
    cd [repository-folder]
    ```
 
-2. Create and configure the `.env` file (if needed):
+3. Create and configure the `.env` file (if needed):
    ```bash
    cp .env.example .env
    # Edit the .env file if needed
@@ -99,17 +104,17 @@ The project consists of the following main apps:
      - Intel/AMD64: use `/usr/lib/libgdal.so` 
    - Update `ALLOWED_HOSTS` to include your domain in production
 
-3. Update Poetry dependencies:
+4. Update Poetry dependencies:
    ```bash
    poetry lock
    ```
 
-4. Start services using Docker Compose:
+5. Start services using Docker Compose:
    ```bash
    docker-compose up --build
    ```
 
-5. Initialize the database:
+6. Initialize the database:
    ```bash
    # In a new terminal
    docker-compose exec web python manage.py migrate
@@ -117,7 +122,7 @@ The project consists of the following main apps:
    docker-compose exec web python manage.py createsuperuser
    ```
 
-6. Access the application in your web browser:
+7. Access the application in your web browser:
    ```
    http://localhost:8000
    ```
@@ -125,49 +130,6 @@ The project consists of the following main apps:
    Admin interface:
    ```
    http://localhost:8000/admin
-   ```
-
-### Local Development Setup
-
-1. Install system dependencies:
-   - Python 3.12
-   - PostgreSQL with PostGIS extension
-   - GDAL and GEOS libraries
-
-2. Install Python dependencies using Poetry:
-   ```bash
-   pip install poetry
-   poetry install
-   ```
-
-3. Configure database settings:
-   ```bash
-   export DB_NAME=datreemap
-   export DB_USER=your_username
-   export DB_PASSWORD=your_password
-   export DB_HOST=localhost
-   export DB_PORT=5432
-   ```
-
-4. Set GDAL/GEOS library paths:
-   ```bash
-   # For macOS with ARM64 architecture (M1/M2 Mac)
-   export GDAL_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgdal.so
-   export GEOS_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgeos_c.so
-   
-   # For Intel Mac or Linux
-   export GDAL_LIBRARY_PATH=/usr/lib/libgdal.so
-   export GEOS_LIBRARY_PATH=/usr/lib/libgeos_c.so
-   ```
-
-5. Run database migrations:
-   ```bash
-   python manage.py migrate
-   ```
-
-6. Start the development server:
-   ```bash
-   python manage.py runserver
    ```
 
 ## Importing Tree Data
