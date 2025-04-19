@@ -275,11 +275,22 @@ python manage.py test
 
 ## 기여하기
 
+이 프로젝트에 기여하는 두 가지 방법이 있습니다:
+
+### 코드 기여
+
 1. 저장소를 포크합니다
 2. 기능 브랜치를 생성합니다 (`git checkout -b feature/amazing-feature`)
 3. 변경사항을 커밋합니다 (`git commit -m 'Add some amazing feature'`)
 4. 브랜치를 푸시합니다 (`git push origin feature/amazing-feature`)
 5. Pull Request를 엽니다
+
+### 이슈 제보 및 기능 제안
+
+1. 해당 이슈/기능이 이미 제보되었는지 확인합니다
+2. 설명적인 제목과 자세한 내용을 포함한 새 이슈를 생성합니다
+3. 버그의 경우 재현 단계를 포함하거나 기능의 경우 구체적인 사용 사례를 포함합니다
+4. 관련 라벨과 필요한 경우 스크린샷을 추가합니다
 
 ## 라이선스
 

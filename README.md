@@ -277,11 +277,22 @@ python manage.py test
 
 ## Contributing
 
+Two ways to contribute to this project:
+
+### Code Contributions
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### Issue Reporting and Feature Requests
+
+1. Check if the issue/feature has already been reported
+2. Create a new issue with a descriptive title and detailed description
+3. Include steps to reproduce (for bugs) or specific use cases (for features)
+4. Add relevant labels and screenshots if applicable
 
 ## License
 
