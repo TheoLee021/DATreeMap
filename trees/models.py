@@ -53,6 +53,5 @@ class Tree(models.Model):
     def save(self, *args, **kwargs):
         # Create Point object based on latitude and longitude
         if self.latitude and self.longitude:
-            self.location = Point(self.longitude, self.latitude)  # 주석 해제
+            self.location = Point(self.longitude, self.latitude)
         super().save(*args, **kwargs)
-
