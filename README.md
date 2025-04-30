@@ -54,6 +54,11 @@ The project consists of the following main apps:
    - For Mac: [Docker Desktop for Mac](https://docs.docker.com/desktop/mac/install/)
    - For Windows: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
    - For Linux: [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
+  
+1-1. Install Poetry
+```bash
+pip install poetry
+```
 
 2. Clone the repository:
    ```bash
