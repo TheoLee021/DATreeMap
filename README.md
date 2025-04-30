@@ -56,9 +56,9 @@ The project consists of the following main apps:
    - For Linux: [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/)
   
 1-1. Install Poetry
-```bash
-pip install poetry
-```
+    ```bash
+    pip install poetry
+    ```
 
 2. Clone the repository:
    ```bash
