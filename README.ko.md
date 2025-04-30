@@ -53,6 +53,11 @@ De Anza 캠퍼스의 나무 데이터를 시각화하고 관리하기 위한 웹
    - Windows용: [Docker Desktop for Windows](https://docs.docker.com/desktop/windows/install/)
    - Linux용: [Docker Engine](https://docs.docker.com/engine/install/)과 [Docker Compose](https://docs.docker.com/compose/install/)
 
+1-1. Poetry 설치
+    ```bash
+    pip install poetry
+    ```
+
 2. 저장소를 복제합니다:
    ```bash
    git clone [저장소-URL]
