@@ -39,7 +39,7 @@ DATABASES = {
 }
 
 # ALLOWED_HOSTS 설정
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1').split(' ')
+ALLOWED_HOSTS = ['*']  # 개발 환경에서는 모든 호스트 허용
 
 
 # Application definition
@@ -138,6 +138,19 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# React 애플리케이션 정적 파일 경로 추가
+# 개발 환경에서는 프론트엔드가 Vite 서버를 통해 제공됨
+# 프로덕션 환경에서는 빌드된 파일을 사용
+if not DEBUG and os.path.exists(BASE_DIR / 'frontend' / 'dist'):
+    STATICFILES_DIRS.append(BASE_DIR / 'frontend' / 'dist')
+
+# 정적 파일 수집 경로
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# 미디어 파일 설정
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -156,3 +169,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
 }
+
+# CORS 설정 - 개발 환경에서 프론트엔드와 통신하기 위함
+if DEBUG:
+    INSTALLED_APPS.append('corsheaders')
+    MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')
+    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOW_CREDENTIALS = True

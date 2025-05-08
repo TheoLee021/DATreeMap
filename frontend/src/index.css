@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Common styles */
+@layer base {
+  body {
+    @apply text-gray-800 min-h-screen flex flex-col;
+  }
+}
+
+/* Tree marker styles */
+.tree-marker {
+  background: transparent;
+  border: none;
+}
+
+.tree-dot {
+  width: 100%;
+  height: 100%;
+  @apply bg-primary rounded-full shadow-md transition-all duration-200;
+}
+
+.leaflet-marker-icon:hover .tree-dot {
+  transform: scale(1.2);
+  @apply bg-primary-dark;
+}
+
+/* Cluster styles */
+.custom-cluster {
+  background-color: transparent !important;
+}
+
+.custom-cluster div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  @apply flex flex-col items-center justify-center bg-transparent;
+}
+
+.custom-cluster .cluster-count {
+  @apply text-white font-bold leading-none mb-0.5;
+}
+
+.custom-cluster .area-name {
+  @apply text-white text-xs text-center max-w-full overflow-visible truncate whitespace-nowrap;
+}
+
+/* Cluster size classes */
+.custom-cluster-small .cluster-count {
+  @apply text-base;
+}
+
+.custom-cluster-medium .cluster-count {
+  @apply text-2xl;
+}
+
+.custom-cluster-large .cluster-count {
+  @apply text-3xl;
+}
+
+.custom-cluster-small .area-name {
+  @apply text-xs;
+}
+
+.custom-cluster-medium .area-name {
+  @apply text-sm;
+}
+
+.custom-cluster-large .area-name {
+  @apply text-base;
+}
+
+/* Cluster size scaling */
+.custom-cluster-small {
+  transform: scale(1.1);
+}
+
+.custom-cluster-medium {
+  transform: scale(1.2);
+}
+
+.custom-cluster-large {
+  transform: scale(1.3);
+}
+
+/* Cluster color classes */
+.custom-cluster-west,
+.custom-cluster-east,
+.custom-cluster-south,
+.custom-cluster-combined,
+.custom-cluster-default {
+  background-color: transparent !important;
+}
+
+/* Filter panel styles */
+.filtered-out {
+  opacity: 0.3;
+} 

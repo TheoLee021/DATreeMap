@@ -14,7 +14,8 @@ dependencies = [
     "djangorestframework (>=3.12,<3.16)",
     "djangorestframework-gis (>=1.1,<2.0)",
     "gunicorn (>=21.2.0,<22.0.0)",
-    "django-filter (>=23.5,<25.0)"
+    "django-filter (>=23.5,<25.0)",
+    "django-cors-headers (>=3.14.0,<4.0.0)"
 ]
 
 

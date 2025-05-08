@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # Django 백엔드
+  web:
+    build: 
+      context: .
+      target: development
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - DEBUG=1
+      - SECRET_KEY=${DJANGO_SECRET_KEY:-django-insecure-your-secret-key-here}
+      - DB_NAME=${DB_NAME:-datreemap}
+      - DB_USER=${DB_USER:-datreemap}
+      - DB_PASSWORD=${DB_PASSWORD:-datreemap}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-5432}
+      - GDAL_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgdal.so
+      - GEOS_LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/libgeos_c.so
+    env_file:
+      - .env
+
+  # React 프론트엔드
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - web
+
+  # PostgreSQL/PostGIS 데이터베이스
+  db:
+    image: postgis/postgis:15-3.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME:-datreemap}
+      - POSTGRES_USER=${DB_USER:-datreemap}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-datreemap}
+    expose:
+      - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-datreemap} -d ${DB_NAME:-datreemap}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume: 
