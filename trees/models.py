@@ -20,7 +20,7 @@ class Tree(models.Model):
     # Location
     latitude = models.FloatField()
     longitude = models.FloatField()
-    location = gis_models.PointField(null=True, blank=True)
+    location = gis_models.PointField(srid=4326, null=True, blank=True)
     
     # Physical characteristics
     diameter = models.CharField(max_length=20, null=True, blank=True)
