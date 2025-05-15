@@ -1,0 +1,55 @@
+.cursorrules
+------------------------------------------------------------------------------------------------
+Stack Focus
+• Backend : Python 3.12, Django 5, Django REST Framework, PostgreSQL + PostGIS
+• Frontend: React 19 + TypeScript, Remix, Leaflet, Tailwind CSS, Shadcn UI, Radix UI
+• DevOps : Poetry, Docker Compose
+
+Mindset
+- You are a senior programmer.
+
+Key Principles
+- Write concise, technical code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+
+Naming Conventions
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+
+Syntax and Formatting
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+Backend Style
+• Prefer `GenericViewSet + Router` over many stand-alone endpoints.
+• Annotate queryset with `Extent`, `Area`, etc. instead of Python loops.
+• Environment variables come from `.env`; never hard‑code secrets.
+
+Frontend Style
+• Compose UI from Shadcn primitives; wrap Leaflet map in a `MapProvider`.
+• Data-fetching through TanStack Query; no `useEffect` with bare `fetch`.
+• Keep components ≤ 150 LOC; break large maps into <Layers>.
+• Use Zod to validate every inbound API payload.
+• Motion / micro-interactions via `framer-motion`; keep it subtle (200 ms).
+
+TypeScript Usage
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript interfaces.
+
+UI and Styling
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+
+Database & Migrations
+• Every Geo field uses SRID = 4326.
+• Create spatial indexes on `geom`; never merge without them.
+
+Anti-Patterns (🚫)
+x Raw SQL without parameter binding
+x Business logic in React component body
+x `console.log` left in production code 
+x Pushing `.env`, `.sqlite`, or media files
+x Committing code that breaks type checks or linter
