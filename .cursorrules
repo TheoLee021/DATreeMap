@@ -2,7 +2,7 @@
 ------------------------------------------------------------------------------------------------
 Stack Focus
 • Backend : Python 3.12, Django 5, Django REST Framework, PostgreSQL + PostGIS
-• Frontend: React 19 + TypeScript, Remix, Leaflet, Tailwind CSS, Shadcn UI, Radix UI
+• Frontend: React, TypeScript, Leaflet, Tailwind CSS, Shadcn UI, Radix UI
 • DevOps : Poetry, Docker Compose
 
 Mindset
