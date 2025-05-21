@@ -33,20 +33,20 @@ services:
     env_file:
       - .env
 
-  # React 프론트엔드
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    ports:
-      - "5173:5173"
-    environment:
-      - NODE_ENV=development
-    depends_on:
-      - web
+  # # React 프론트엔드
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     - web
 
   # PostgreSQL/PostGIS 데이터베이스
   db:
