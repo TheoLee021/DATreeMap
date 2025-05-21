@@ -170,9 +170,9 @@ REST_FRAMEWORK = {
     ],
 }
 
-# CORS 설정 - 개발 환경에서 프론트엔드와 통신하기 위함
-if DEBUG:
-    INSTALLED_APPS.append('corsheaders')
-    MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')
-    CORS_ALLOW_ALL_ORIGINS = True
-    CORS_ALLOW_CREDENTIALS = True
+# # CORS 설정 - 개발 환경에서 프론트엔드와 통신하기 위함
+# if DEBUG:
+#     INSTALLED_APPS.append('corsheaders')
+#     MIDDLEWARE.insert(1, 'corsheaders.middleware.CorsMiddleware')
+#     CORS_ALLOW_ALL_ORIGINS = True
+#     CORS_ALLOW_CREDENTIALS = True
