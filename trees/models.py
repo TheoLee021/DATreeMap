@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.gis.db import models as gis_models
 from django.contrib.gis.geos import Point
 from users.models import User
+from common.models import CommonModel
 
-class Tree(models.Model):
+class Tree(CommonModel):
     # Health status choices
     class HealthChoices(models.TextChoices):
         EXCELLENT = ("80% - Excellent", "80% - Excellent")
