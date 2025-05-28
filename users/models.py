@@ -35,3 +35,6 @@ class User(AbstractUser):
         max_length=2,
         choices=LanguageChoices.choices,
     )
+    
+    # Relationships
+    my_trees = models.ManyToManyField("trees.Tree", related_name="users")
