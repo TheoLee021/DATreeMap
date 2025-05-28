@@ -18,6 +18,7 @@ class CustomUserAdmin(UserAdmin):
                     "is_contributor",
                     "gender",
                     "language",
+                    "my_trees",
                 ),
             },
         ),
