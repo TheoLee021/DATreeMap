@@ -47,6 +47,7 @@ ALLOWED_HOSTS = ['*']  # 개발 환경에서는 모든 호스트 허용
 CUSTUM_APPS = [
     'users.apps.UsersConfig',
     'trees.apps.TreesConfig',
+    'common.apps.CommonConfig',
 ]
 
 SYSTEM_APPS = [
