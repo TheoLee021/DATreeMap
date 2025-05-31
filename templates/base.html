@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}De Anza Tree Map{% endblock %}</title>
+    <title>{% block title %}De Anza Campus Tree Map{% endblock %}</title>
     
     <!-- Import the main stylesheet -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <header role="banner">
-        <div class="logo">{% block header %}De Anza Tree Map{% endblock %}</div>
+        <div class="logo">{% block header %}De Anza Campus Tree Map{% endblock %}</div>
         <nav role="navigation" aria-label="Main Navigation">
             <ul>
                 <li><a href="{% url 'trees:map' %}">Map</a></li>
