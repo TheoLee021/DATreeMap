@@ -1,8 +1,12 @@
-# De Anza Treemap
+# De Anza Campus Treemap
 
 A web application for visualizing and managing tree data on the De Anza campus. Built with Django and PostGIS, this application provides an interactive map interface to explore trees on campus.
 
 [![Korean](https://img.shields.io/badge/README-Korean-red)](README.ko.md)
+
+<img width="1469" alt="Screenshot 2025-05-31 at 11 07 15 AM" src="https://github.com/user-attachments/assets/3278f12f-6347-49b3-b50a-51d8e02291a6" />
+
+<img width="1470" alt="Screenshot 2025-05-31 at 11 07 58 AM" src="https://github.com/user-attachments/assets/cc31fd69-d623-4783-9a8a-839ddbc1daa7" />
 
 ## Table of Contents
 - [Features](#features)
