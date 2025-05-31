@@ -17,6 +17,7 @@ class Tree(CommonModel):
     tag_number = models.IntegerField(primary_key=True, verbose_name="Tag #")
     common_name = models.CharField(max_length=100, verbose_name="Common Name")
     botanical_name = models.CharField(max_length=100, verbose_name="Botanical Name")
+    tree_photo = models.ImageField(blank=True)
     
     # Location
     latitude = models.FloatField()
