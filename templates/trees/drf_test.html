@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="container">
-    <h1>DRF API 테스트</h1>
+    <h1>DRF API Test</h1>
     
     <div id="result"></div>
     
     <script>
-        // 새 DRF API 테스트
+        // New DRF API Test
         fetch('/api/rest/trees/')
             .then(response => response.json())
             .then(data => {
@@ -16,9 +16,9 @@
                     '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
             })
             .catch(error => {
-                console.error('API 오류:', error);
+                console.error('API Error:', error);
                 document.getElementById('result').innerHTML = 
-                    '<div class="error">API 오류: ' + error.message + '</div>';
+                    '<div class="error">API Error: ' + error.message + '</div>';
             });
     </script>
 </div>
