@@ -1,35 +1,44 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}De Anza Tree Map{% endblock %}</title>
+    
+    <!-- Import the main stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
     {% block extra_css %}{% endblock %}
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
-    <header>
-        <h1>{% block header %}De Anza Tree Map{% endblock %}</h1>
-        <nav>
-            <a href="{% url 'trees:map' %}">홈</a> |
-            <a href="/admin/">관리자</a> |
-            <a href="{% url 'trees:drf-test' %}">API 테스트</a>
+    <header role="banner">
+        <div class="logo">{% block header %}De Anza Tree Map{% endblock %}</div>
+        <nav role="navigation" aria-label="Main Navigation">
+            <ul>
+                <li><a href="{% url 'trees:map' %}">Map</a></li>
+                <li><a href="{% url 'trees:list' %}">List</a></li>
+                <li><a href="/admin/">Admin</a></li>
+                <li><a href="{% url 'trees:drf-test' %}">API Test</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </nav>
     </header>
     
-    <main>
+    <main role="main">
         {% block content %}{% endblock %}
     </main>
     
-    <footer>
-        <p>&copy; 2025 Environmental Monitoring Society</p>
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="organization">Environmental Monitoring Society</div>
+            <div class="copyright">&copy; 2025 All Rights Reserved</div>
+            <div class="links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
     </footer>
     
     {% block extra_js %}{% endblock %}
