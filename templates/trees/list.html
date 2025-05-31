@@ -1,0 +1,460 @@
+{% extends 'base.html' %}
+
+{% block title %}나무 목록 - De Anza Tree Map{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Override base styles for list page */
+    main {
+        padding: 20px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .search-filters {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .search-filters form {
+        display: flex;
+        gap: 15px;
+        align-items: end;
+        flex-wrap: wrap;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 1;
+        min-width: 150px;
+    }
+    
+    .form-group:first-child {
+        flex: 2;
+        max-width: 400px;
+    }
+    
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        height: 36px;
+        box-sizing: border-box;
+    }
+
+    #search {
+        width: 100%;
+        max-width: 400px;
+        min-width: 200px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        height: 36px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-primary {
+        background: #4CAF50;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background: #45a049;
+    }
+    
+    .btn-secondary {
+        background: #6c757d;
+        color: white;
+    }
+    
+    .btn-secondary:hover {
+        background: #5a6268;
+    }
+    
+    .btn-container {
+        display: flex;
+        gap: 10px;
+        align-items: end;
+        flex-shrink: 0;
+    }
+    
+    .results-count {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    /* Table Styles */
+    .table-container {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    
+    .tree-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+    
+    .tree-table th,
+    .tree-table td {
+        padding: 12px 8px;
+        text-align: center;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .tree-table th {
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #495057;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    
+    .tree-table tbody tr:hover {
+        background: #f8f9fa;
+    }
+    
+    .tree-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+    
+    /* Sortable column headers */
+    .sortable {
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        padding-right: 20px;
+    }
+    
+    .sortable:hover {
+        background: #e9ecef;
+    }
+    
+    .sort-icon {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        color: #666;
+    }
+    
+    .sort-asc::after {
+        content: "↑";
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    
+    .sort-desc::after {
+        content: "↓";
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    
+    .sort-none::after {
+        content: "↕";
+        color: #ccc;
+    }
+    
+    /* Health status styles */
+    .health-status {
+        padding: 4px 8px;
+        border-radius: 4px;
+        min-width: 60px;
+        display: inline-block;
+    }
+    
+    /* .health-excellent { background: #d4edda; color: #155724; }
+    .health-good { background: #d1ecf1; color: #0c5460; }
+    .health-fair { background: #fff3cd; color: #856404; }
+    .health-poor { background: #f8d7da; color: #721c24; } */
+    
+    /* Tag number styling */
+    .tag-number {
+        font-weight: bold;
+        color: #4CAF50;
+    }
+    
+    /* Column width settings */
+    .col-tag { width: 10%; }
+    .col-common-name { width: 16%; }
+    .col-botanical-name { width: 20%; }
+    .col-height { width: 10%; }
+    .col-diameter { width: 10%; }
+    .col-health { width: 12%; }
+    .col-update { width: 12%; }
+    .col-notes { width: 10%; }
+    
+    /* Pagination styles */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+    }
+    
+    .pagination a,
+    .pagination .current {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #4CAF50;
+    }
+    
+    .pagination a:hover {
+        background: #f8f9fa;
+    }
+    
+    .pagination .current {
+        background: #4CAF50;
+        color: white;
+        border-color: #4CAF50;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .search-filters form {
+            /* flex-direction: column; */
+            gap: 10px;
+        }
+        
+        .form-group {
+            flex: none;
+            min-width: auto;
+        }
+        
+        .form-group:first-child {
+            flex: none;
+            max-width: none;
+        }
+        
+        #search {
+            max-width: none;
+            min-width: auto;
+        }
+        
+        .tree-table {
+            font-size: 12px;
+        }
+        
+        .tree-table th,
+        .tree-table td {
+            padding: 8px 4px;
+        }
+        
+        .col-botanical-name,
+        .col-notes {
+            display: none;
+        }
+    }
+    
+    /* Empty state */
+    .no-results {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>Tree List</h2>
+
+<!-- 검색 및 필터 -->
+<div class="search-filters">
+    <form method="get">
+        <div class="form-group">
+            <label for="search">Search</label>
+            <input type="text" id="search" name="search" value="{{ search_query }}" 
+                   placeholder="Search by tag number, name, or botanical name...">
+        </div>
+        
+        <div class="form-group">
+            <label for="common_name">Common Name</label>
+            <select id="common_name" name="common_name">
+                <option value="">All</option>
+                {% for name in common_name_choices %}
+                    <option value="{{ name }}" {% if name == common_name_filter %}selected{% endif %}>
+                        {{ name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="health">Health</label>
+            <select id="health" name="health">
+                <option value="">All</option>
+                {% for health in health_choices %}
+                    <option value="{{ health }}" {% if health == health_filter %}selected{% endif %}>
+                        {{ health }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="{% url 'trees:list' %}" class="btn btn-secondary">Reset</a>
+        </div>
+        
+        <!-- Hidden fields to preserve sorting -->
+        {% if sort_by %}
+            <input type="hidden" name="sort" value="{{ sort_by }}">
+        {% endif %}
+        {% if order %}
+            <input type="hidden" name="order" value="{{ order }}">
+        {% endif %}
+    </form>
+</div>
+
+<!-- 결과 수 표시 -->
+<div class="results-count">
+    Total {{ page_obj.paginator.count }} trees.
+</div>
+
+<!-- 나무 테이블 -->
+{% if page_obj %}
+<div class="table-container">
+    <table class="tree-table">
+        <thead>
+            <tr>
+                <th class="col-tag sortable {% if sort_by == 'tag_number' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('tag_number')">
+                    Tag Number
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-common-name sortable {% if sort_by == 'common_name' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('common_name')">
+                    Common Name
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-botanical-name sortable {% if sort_by == 'botanical_name' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('botanical_name')">
+                    Botanical Name
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-height sortable {% if sort_by == 'height' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('height')">
+                    Height
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-diameter sortable {% if sort_by == 'diameter' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('diameter')">
+                    Diameter
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-health sortable {% if sort_by == 'health' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('health')">
+                    Health
+                    <span class="sort-icon"></span>
+                </th>
+                <th class="col-update sortable {% if sort_by == 'last_update' %}sort-{{ order }}{% else %}sort-none{% endif %}" 
+                    onclick="sortTable('last_update')">
+                    Last Update
+                    <span class="sort-icon"></span>
+                </th>
+                <!-- <th class="col-notes">Notes</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for tree in page_obj %}
+            <tr>
+                <td class="tag-number">{{ tree.tag_number }}</td>
+                <td>{{ tree.common_name|default:"Unknown" }}</td>
+                <td>{{ tree.botanical_name|default:"Unknown" }}</td>
+                <td>{{ tree.height|default:"Unknown" }}</td>
+                <td>{{ tree.diameter|default:"Unknown" }}</td>
+                <td>
+                    <span class="health-status health-{{ tree.health|lower }}">
+                        {{ tree.health|default:"Unknown" }}
+                    </span>
+                </td>
+                <td>{{ tree.last_update|date:"Y-m-d"|default:"Unknown" }}</td>
+                <!-- <td>{{ tree.notes|truncatechars:30|default:"-" }}</td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="no-results">
+    <p>No trees found matching your search criteria.</p>
+</div>
+{% endif %}
+
+<!-- Pagination -->
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if common_name_filter %}&common_name={{ common_name_filter }}{% endif %}{% if health_filter %}&health={{ health_filter }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if order %}&order={{ order }}{% endif %}">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if common_name_filter %}&common_name={{ common_name_filter }}{% endif %}{% if health_filter %}&health={{ health_filter }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if order %}&order={{ order }}{% endif %}">&lsaquo; Previous</a>
+    {% endif %}
+    
+    <span class="current">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} Page
+    </span>
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if common_name_filter %}&common_name={{ common_name_filter }}{% endif %}{% if health_filter %}&health={{ health_filter }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if order %}&order={{ order }}{% endif %}">Next &rsaquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if common_name_filter %}&common_name={{ common_name_filter }}{% endif %}{% if health_filter %}&health={{ health_filter }}{% endif %}{% if sort_by %}&sort={{ sort_by }}{% endif %}{% if order %}&order={{ order }}{% endif %}">Last &raquo;</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function sortTable(column) {
+    const currentSort = '{{ sort_by }}';
+    const currentOrder = '{{ order }}';
+    
+    let newOrder = 'asc';
+    
+    // If clicking the same column, toggle order
+    if (currentSort === column) {
+        newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+    }
+    
+    // Build URL with current filters and new sort
+    const url = new URL(window.location);
+    url.searchParams.set('sort', column);
+    url.searchParams.set('order', newOrder);
+    url.searchParams.set('page', '1'); // Reset to first page when sorting
+    
+    window.location.href = url.toString();
+}
+</script>
+{% endblock %} 
