@@ -6,7 +6,7 @@ from .models import Tree
 class TreeAdmin(GISModelAdmin):
     fieldsets = (
         ('Basic Information', {
-            'fields': ('tag_number', 'common_name', 'botanical_name')
+            'fields': ('tag_number', 'common_name', 'botanical_name', 'tree_photo')
         }),
         ('Location Information', {
             'fields': ('latitude', 'longitude', 'location')
