@@ -449,11 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div style="padding: 6px 8px; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px;">
                     <h4>Tree Map</h4>
                     <p>Total Trees: <strong>${treeCount}</strong></p>
-                    <div class="legend-areas">
-                        <div><span style="background-color: #1B5E20"></span> West Campus</div>
-                        <div><span style="background-color: #0b6a3c"></span> East Campus</div>
-                        <div><span style="background-color: #006633"></span> South Campus</div>
-                    </div>
                 </div>`;
             return div;
         };
