@@ -7,6 +7,7 @@ app_name = 'trees'
 # 기존 URL 패턴 유지
 urlpatterns = [
     path('', views.tree_map, name='map'),
+    path('list/', views.tree_list, name='list'),
     path('api/trees/', views.tree_data, name='tree_data'),
     path('api/trees/<int:tag_number>/', views.tree_detail, name='tree_detail'),
     path('drf-test/', views.drf_test_view, name='drf-test'),  # 테스트 페이지 URL 추가
