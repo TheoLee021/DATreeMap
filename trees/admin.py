@@ -4,6 +4,20 @@ from .models import Tree
 
 @admin.register(Tree)
 class TreeAdmin(GISModelAdmin):
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('tag_number', 'common_name', 'botanical_name')
+        }),
+        ('Location Information', {
+            'fields': ('latitude', 'longitude', 'location')
+        }),
+        ('Growth Information', {
+            'fields': ('diameter', 'height', 'crown_height', 'crown_spread')
+        }),
+        ('Other', {
+            'fields': ('health', 'notes', 'contributors', 'last_update', 'created_at')
+        }),
+    )
     list_display = (
         'tag_number', 
         'common_name', 
