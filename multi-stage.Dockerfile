@@ -1,11 +1,3 @@
-# 프론트엔드 빌드 단계
-FROM node:18-alpine AS frontend-build
-WORKDIR /app/frontend
-COPY frontend/package.json frontend/package-lock.json* ./
-RUN npm install
-COPY frontend/ ./
-RUN npm run build
-
 # 공통 베이스 이미지
 FROM python:3.12-slim AS base
 
@@ -53,11 +45,8 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # 프로덕션 환경
 FROM base AS production
-RUN poetry install --no-dev --no-interaction --no-ansi --no-root
+RUN poetry install --only main --no-interaction --no-ansi --no-root
 COPY . .
-
-# 프론트엔드 빌드 결과물 복사
-COPY --from=frontend-build /app/frontend/dist /app/frontend/dist
 
 # 정적 파일 수집
 RUN python manage.py collectstatic --noinput

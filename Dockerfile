@@ -45,7 +45,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # 프로덕션 환경
 FROM base AS production
-RUN poetry install --no-dev --no-interaction --no-ansi --no-root
+RUN poetry install --only main --no-interaction --no-ansi --no-root
 COPY . .
 RUN python manage.py collectstatic --noinput
 EXPOSE 8000

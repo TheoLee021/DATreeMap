@@ -31,6 +31,15 @@ DeAnzaTreeMap.filters = {
 // Add array to store all markers to the namespace
 DeAnzaTreeMap.allTreeMarkers = [];
 
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize map with lower zoom level
     const map = L.map('map', {
@@ -263,17 +272,31 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Use feature.id as tag_number (important!)
             const tagNumber = feature.id || 'N/A';
+            const encodedTagNumber = encodeURIComponent(String(tagNumber));
+            const safeCommonName = escapeHtml(properties.common_name || 'Tree');
+            const safeBotanicalName = escapeHtml(properties.botanical_name || 'Unknown');
+            const safeTagNumber = escapeHtml(tagNumber);
             
             const marker = L.marker(latlng, { icon: treeIcon });
             
             // Set popup content
             let popupContent = `
-                <h3>${properties.common_name || 'Tree'}</h3>
-                <p>Species: ${properties.botanical_name || 'Unknown'}</p>
-                <p>Tag #: ${tagNumber}</p>
-                <button onclick="DeAnzaTreeMap.viewTreeDetails('${tagNumber}')">View Details</button>
+                <h3>${safeCommonName}</h3>
+                <p>Species: ${safeBotanicalName}</p>
+                <p>Tag #: ${safeTagNumber}</p>
+                <button type="button" class="view-tree-details" data-tag-number="${encodedTagNumber}">View Details</button>
             `;
             marker.bindPopup(popupContent);
+            marker.on('popupopen', function(event) {
+                const button = event.popup.getElement().querySelector('.view-tree-details');
+                if (!button) {
+                    return;
+                }
+                button.addEventListener('click', function() {
+                    const selectedTagNumber = decodeURIComponent(this.dataset.tagNumber || '');
+                    DeAnzaTreeMap.viewTreeDetails(selectedTagNumber);
+                });
+            });
             
             // 마커 정보를 allTreeMarkers 배열에 저장
             const markerInfo = { marker, latlng, properties, tagNumber };
@@ -497,10 +520,8 @@ DeAnzaTreeMap.viewTreeDetails = function(tagNumber) {
  * @param {object} treeData - Tree data object
  */
 DeAnzaTreeMap.displayTreeDetails = function(treeData) {
-    // If existing modal exists, remove it (prevent duplicates)
-    const existingModal = document.querySelector('.tree-modal');
-    if (existingModal) {
-        document.body.removeChild(existingModal);
+    if (typeof DeAnzaTreeMap.closeActiveModal === 'function') {
+        DeAnzaTreeMap.closeActiveModal();
     }
     // Create modal container
     const modal = document.createElement('div');
@@ -517,45 +538,63 @@ DeAnzaTreeMap.displayTreeDetails = function(treeData) {
     closeButton.className = 'tree-modal-close';
     closeButton.innerHTML = '&times;';
     closeButton.setAttribute('aria-label', 'Close dialog');
-    closeButton.onclick = function() {
-        document.body.removeChild(modal);
-    };
-    
-    // Close modal on ESC key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && document.body.contains(modal)) {
+
+    const closeModal = function() {
+        document.removeEventListener('keydown', closeOnEscape);
+        if (document.body.contains(modal)) {
             document.body.removeChild(modal);
         }
-    });
+        if (DeAnzaTreeMap.closeActiveModal === closeModal) {
+            DeAnzaTreeMap.closeActiveModal = null;
+        }
+    };
+    const closeOnEscape = function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    };
+
+    closeButton.onclick = closeModal;
+    document.addEventListener('keydown', closeOnEscape);
+    DeAnzaTreeMap.closeActiveModal = closeModal;
     
     // Generate tree info HTML
+    const safeCommonName = escapeHtml(treeData.common_name || 'Unknown Tree');
+    const safeBotanicalName = escapeHtml(treeData.botanical_name || '');
+    const safeTagNumber = escapeHtml(treeData.tag_number ?? '');
+    const safeHeight = escapeHtml(treeData.height || '');
+    const safeDiameter = escapeHtml(treeData.diameter || '');
+    const safeCrownSpread = escapeHtml(treeData.crown_spread || '');
+    const safeLastUpdate = escapeHtml(treeData.last_update || '');
+    const safeNotes = escapeHtml(treeData.notes || '').replace(/\n/g, '<br>');
+
     let detailsHtml = '<div class="tree-details">';
-    detailsHtml += `<h2 id="tree-modal-title">${treeData.common_name || 'Unknown Tree'}</h2>`;
+    detailsHtml += `<h2 id="tree-modal-title">${safeCommonName}</h2>`;
     
-    if (treeData.botanical_name) {
-        detailsHtml += `<p class="botanical-name"><em>${treeData.botanical_name}</em></p>`;
+    if (safeBotanicalName) {
+        detailsHtml += `<p class="botanical-name"><em>${safeBotanicalName}</em></p>`;
     }
     
     // Create tree attributes table
     detailsHtml += '<table class="tree-attributes">';
-    detailsHtml += `<tr><th>Tag #:</th><td>${treeData.tag_number}</td></tr>`;
+    detailsHtml += `<tr><th>Tag #:</th><td>${safeTagNumber}</td></tr>`;
     
     if (treeData.height) {
-        detailsHtml += `<tr><th>Height:</th><td>${treeData.height}</td></tr>`;
+        detailsHtml += `<tr><th>Height:</th><td>${safeHeight}</td></tr>`;
     }
     if (treeData.diameter) {
-        detailsHtml += `<tr><th>Diameter:</th><td>${treeData.diameter}</td></tr>`;
+        detailsHtml += `<tr><th>Diameter:</th><td>${safeDiameter}</td></tr>`;
     }
     if (treeData.crown_spread) {
-        detailsHtml += `<tr><th>Crown Spread:</th><td>${treeData.crown_spread}</td></tr>`;
+        detailsHtml += `<tr><th>Crown Spread:</th><td>${safeCrownSpread}</td></tr>`;
     }
     if (treeData.last_update) {
-        detailsHtml += `<tr><th>Last Updated:</th><td>${treeData.last_update}</td></tr>`;
+        detailsHtml += `<tr><th>Last Updated:</th><td>${safeLastUpdate}</td></tr>`;
     }
     detailsHtml += '</table>';
     
     if (treeData.notes) {
-        detailsHtml += `<div class="tree-notes"><h3>Expert's Notes:</h3><p>${treeData.notes}</p></div>`;
+        detailsHtml += `<div class="tree-notes"><h3>Expert's Notes:</h3><p>${safeNotes}</p></div>`;
     }
     
     detailsHtml += '</div>';
@@ -572,7 +611,7 @@ DeAnzaTreeMap.displayTreeDetails = function(treeData) {
     // Close modal on outside click
     modal.addEventListener('click', function(event) {
         if (event.target === modal) {
-            document.body.removeChild(modal);
+            closeModal();
         }
     });
 };
@@ -619,6 +658,12 @@ function addFilterControls(geojsonData, map) {
     
     filterControl.onAdd = function(map) {
         const div = L.DomUtil.create('div', 'filter-control');
+        const speciesOptions = treeSpecies
+            .map(species => {
+                const safeSpecies = escapeHtml(species);
+                return `<option value="${safeSpecies}">${safeSpecies}</option>`;
+            })
+            .join('');
         div.innerHTML = `
             <div class="filter-panel">
                 <h3>Filter</h3>
@@ -627,9 +672,7 @@ function addFilterControls(geojsonData, map) {
                         <label for="species-filter">Tree Species:</label>
                         <select id="species-filter">
                             <option value="">All Species</option>
-                            ${treeSpecies.map(species => 
-                                `<option value="${species}">${species}</option>`
-                            ).join('')}
+                            ${speciesOptions}
                         </select>
                     </div>
                     <div class="filter-group">
